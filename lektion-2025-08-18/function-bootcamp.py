@@ -69,7 +69,7 @@ def divide(num1, num2):
 
 
 def calculator(num1, num2, operator):
-    if not isinstance(num1, numbers.Number) or not isinstance(num1, numbers.Number): 
+    if not isinstance(num1, numbers.Number) or not isinstance(num2, numbers.Number): 
         return "Error: Inputs must be numbers (e.g., int or float)."
     
     if operator == '+':
@@ -88,3 +88,16 @@ add_result = calculator( 3, 5, '+' )
 print(f"3 + 5 = {add_result}")
 subtraction_result = calculator( 8, 5, '-' )
 print(f"8 - 5 = {subtraction_result}")
+divide_result = calculator( 30, 5, '/' )
+print(f"30 / 5 = {divide_result}")
+multiply_result = calculator( 8, 5, '*' )
+print(f"8 * 5 = {multiply_result}")
+invalid_result = calculator( 40, 5, '%' )
+print(f"8 - 5 = {invalid_result}")
+invalid_number = calculator( 40, '8', '+' )
+print(f"8 - 5 = {invalid_number}")
+
+
+
+
+
