@@ -70,15 +70,21 @@ def divide(num1, num2):
 
 def calculator(num1, num2, operator):
     if not isinstance(num1, numbers.Number) or not isinstance(num1, numbers.Number): 
-        if operator == '+':
-            return add(num1, num2)
-        elif operator == '-':
-            return subtract(num1, num2)
-        elif operator == '*':
-            return multiply(num1, num2)
-        elif operator == '/':
-            return divide(num1, num2)
-        else:
-            return "Error: Invalid operator. Please use one of: +, -, *, /"
+        return "Error: Inputs must be numbers (e.g., int or float)."
+    
+    if operator == '+':
+        return add(num1, num2)
+    elif operator == '-':
+        return subtract(num1, num2)
+    elif operator == '*':
+        return multiply(num1, num2)
+    elif operator == '/':
+        return divide(num1, num2)
+    else:
+        return "Error: Invalid operator. Please use one of: +, -, *, /"
 
 
+add_result = calculator( 3, 5, '+' )
+print(f"3 + 5 = {add_result}")
+subtraction_result = calculator( 8, 5, '-' )
+print(f"8 - 5 = {subtraction_result}")
