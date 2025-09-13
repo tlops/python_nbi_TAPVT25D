@@ -3,7 +3,7 @@
 #     result = 10 / number
 #     print(f"Resultat: {result}")
 # except ValueError:
-#     print("Enbart heltal tillåts")
+#     print("Enbart qwheltal tillåts")
 # except ZeroDivisionError:
 #     print("Du kan inte dela med noll")
 

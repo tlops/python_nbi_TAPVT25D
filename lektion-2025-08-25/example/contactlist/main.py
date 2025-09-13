@@ -19,7 +19,7 @@ def save_file(name, contacts):
         with open(name, "w") as file:
             for contact in contacts:
                 file.write(f"{contact}\n")
-    except OSError:1
+    except OSError:
         print("Kunde inte spara filen")
     else:
         print("Fil sparad!")
@@ -47,12 +47,19 @@ def main():
             for contact in contacts:
                 print(f"- {contact}")
         elif choose == 2:
-            name = input("Ange namn:")
+            name = input("Ange namn: ")
             contacts.append(name)
             print(f"{name} har lagts till")
         elif choose == 3:
+            count = 1
+            for contact in contacts:
+                print(f"{count} - {contact}")
+                count = count + 1
+
+
             try:
-                index = int(input("Vilken kontakt vill du ta bort(nummer)?: "))
+                to_be_removed = int(input("Vilken kontakt vill du ta bort(nummer)?: "))
+                index = to_be_removed - 1
                 removed_contact = contacts.pop(index)
                 print(f"{removed_contact} har tagits bort")
             except ValueError:
