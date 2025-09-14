@@ -65,7 +65,7 @@ def calculate_from_file(input_filename, output_filename):
 if __name__ == "__main__":
     # Define the file names.
     input_file_name = "to-be-calculated-list.txt"
-    output_file_name = "result-file.txt"
+    output_file_name = "vibe_result-file.txt"
     
     # Run the main function.
     calculate_from_file(input_file_name, output_file_name)
