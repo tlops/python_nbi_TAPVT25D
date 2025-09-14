@@ -1,0 +1,15 @@
+Calculation - 10 / 2
+
+Result = 5.0
+--------------------
+Calculation - 5 + 3
+
+Result = 8
+--------------------
+Calculation - 4 * 7
+
+Result = 28
+--------------------
+Calculation - 29 - 26
+Result = 3
+--------------------
