@@ -33,28 +33,34 @@ def process_files(input_file_name, output_file_name):
         # # Open the output file for writing.
         with open(output_file_name, "w") as out_file:
             for equation in equations:
-                            
-                results = eval(equation)
-                out_file.write(f"Calculation - {equation}\n")
-                out_file.write(f"Result = {results}\n")
-                out_file.write("-" * 20 + "\n")
+                try:
+                                              
+                    results = eval(equation)
+                    out_file.write(f"Calculation - {equation}\n")
+                    out_file.write(f"Result = {results}\n")
+                    out_file.write("-" * 20 + "\n")
 
-    except ZeroDivisionError:
-        # handle division by zero
-        out_file.write(f"Calculation - {equation}")
-        out_file.write("Error: ZeroDivisionError - Cannot divide by zero.\n\n")
-        out_file.write("-" * 20 + "\n")
+                except ZeroDivisionError:
+                    # handle division by zero
+                    out_file.write(f"Calculation - {equation}")
+                    out_file.write("Error: ZeroDivisionError - Cannot divide by zero.\n\n")
+                    out_file.write("-" * 20 + "\n")
 
-    except (ValueError, SyntaxError, NameError):
-        # Handles other types of erros
-        # non numeric input (e.g trying to add string)
-        out_file.write(f"Calculation - {equation}")
-        out_file.write("Error: Invalid expression or type error\n")
-        out_file.write("-" * 20 + "\n")
+                except (ValueError, SyntaxError, NameError):
+                    # Handles other types of erros
+                    # non numeric input (e.g trying to add string)
+                    out_file.write(f"Calculation - {equation}")
+                    out_file.write("Error: Invalid expression or type error\n")
+                    out_file.write("-" * 20 + "\n")
+                
+                except Exception as e:
+                    # Catch other unexpected errors
+                    out_file.write(f"Calculation - {equation}\n")
+                    out_file.write(f"An unexpected error occurred: {e}\n")
+                    out_file.write("-" * 20 + "\n")
 
     except Exception as e:
         # Catch other unexpected errors
-        out_file.write(f"Calculation - {equation}\n")
         out_file.write(f"An unexpected error occurred: {e}\n")
         out_file.write("-" * 20 + "\n")
 
