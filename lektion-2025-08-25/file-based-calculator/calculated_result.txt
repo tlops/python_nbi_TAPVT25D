@@ -14,3 +14,7 @@ Calculation - 29 - 26
 
 Result = 3
 --------------------
+Calculation - 20 / 0
+Error: ZeroDivisionError - Cannot divide by zero.
+
+--------------------
