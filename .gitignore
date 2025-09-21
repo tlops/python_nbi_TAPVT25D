@@ -1,0 +1,5 @@
+file: venv/ .vscode/ python_nbi_TAPVT25D/lektion-2025-09-15/testenv/ *venv/ *env*/
+.vscode
+__pycache__
+.pytest_cache
+.coverage 
