@@ -1,13 +1,18 @@
-## Palindrom-funktion
-## User Story
-Som användare vill jag veta om ett ord är ett palindrom, så att jag kan känna mig smart 😄.
-
-## Acceptanskriterier
-*. "level" → True.
-*. "python" → False.
-*. "Racecar" → True (case-insensitive).
-
-##Övning
-1. Skriv testerna först.
-2. Följ TDD-cykeln för att bygga is_palindrome(word).
-3. Lägg till parametriserade tester i pytest.
+## 4. PizzaOrder
+#
+###User Story
+#Som kund vill jag kunna beställa en pizza med toppings, så att jag får rätt totalpris.
+#
+### Acceptanskriterier
+#* En ny pizza kostar 80 kr.
+#* Varje topping kostar 10 kr.
+#* PizzaOrder("Margherita") utan extra toppings → 80 kr.
+#* PizzaOrder("Margherita") med 2 toppings → 100 kr.
+#* En pizza måste alltid ha minst en grund (ej tom order).
+#
+### Övning
+#1. Börja med test för grundpris.
+#2. Lägg till test för toppings.
+#3. Lägg till test för felaktig order.
+#4. Använd pytest parametrisering för olika kombinationer.
+#
