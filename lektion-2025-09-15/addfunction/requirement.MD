@@ -6,8 +6,8 @@ add(2, 3) returnerar 5.
 add(-1, 1) returnerar 0.
 
 ## Övning
-#. Skriv tester för funktionen add.
-#. Kör pytest och se dem fallera.
-#. Implementera add.
-#. Kör om testerna tills de går igenom.
-#. Refaktorera vid behov.
+1. Skriv tester för funktionen add.
+2. Kör pytest och se dem fallera.
+3. Implementera add.
+4. Kör om testerna tills de går igenom.
+5. Refaktorera vid behov.
