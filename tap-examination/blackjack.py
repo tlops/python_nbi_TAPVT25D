@@ -45,7 +45,7 @@ class Dealer(Player):
     def roll_untill_stand(self):
         # Dealer's specific rule: Must keep rolling until score is 17 or more
         # should_roll
-        return self.score < DEALER_STOP_VALUE
+        return self.score < 17 #DEALER_STOP_VALUE
 
     
 class GameLogic:
@@ -92,7 +92,7 @@ class GameLogic:
             else:
                 print("Invalid input. Please enter 'r' to roll or 's' to stand.")
 
-    
+  
     def dealers_turn(self):
         # Handles the dealer's automatic turn, following the rule to hit until >= 17.
         print("\n--- Dealer's Turn ---")
@@ -100,13 +100,14 @@ class GameLogic:
             roll = self.dealer.roll_dice()
             print(f"Dealer rolled {roll} and has total: {self.dealer.score}")
 
-            if self.dealer.is_bust():
-                print(f"DEALER BUST! Dealer's total point ({self.dealer.score}) is over {PLAYER_BUST_VALUE}.")
-                return "bust"
+        if self.dealer.is_bust():
+            print(f"DEALER BUST! Dealer's total point ({self.dealer.score}) is over {PLAYER_BUST_VALUE}.")
+            return "bust"
 
-            else:
-                print(f"Dealer stands with total: {self.dealer.score}")
-                return "stayed"
+            
+        print(f"Dealer stands with total: {self.dealer.score}")
+        return "stayed"
+    
 
     
     def decide_winner(self, player_outcome, dealer_outcome):
@@ -174,13 +175,37 @@ class GameLogic:
 
         # 3. Determine winner
         self.decide_winner(player_outcome, dealer_outcome)
+    
+    def play_again_loop(self):
+        # The main loop that allows the user to play multiple times and manages exit.
+        print("Welcome to Dice Blackjack (get close to 21 without going over)!")
+
+        while True:
+            self.start_game()
+
+            while True:
+                play_again_choice = input("\nPlay again? (y/n): ").strip().lower()
+                if play_again_choice in ['y', 'yes']:
+                    break # start next round
+                
+                elif play_again_choice in ['n', 'no']:
+                    print("Thanks for playing — final standings:")
+                    # Save the final scores before exiting
+                    """self.score_manager.save_scores()"""
+                    break
+            
+                
+                else:
+                    print("Invalid input. Please enter 'y' or 'n'.")
+            break
+
 
 
 # Run the game
 if __name__ == "__main__":
     try:
         game = GameLogic()
-        #game.play_again_loop()
+        game.play_again_loop()
     except Exception as e:
         print(f"\nInterrupted. Saving highscores and exiting: {e}")
         
