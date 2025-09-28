@@ -186,6 +186,8 @@ class GameLogic:
             while True:
                 play_again_choice = input("\nPlay again? (y/n): ").strip().lower()
                 if play_again_choice in ['y', 'yes']:
+                    # somehow my break here is not working
+                    self.start_game()
                     break # start next round
                 
                 elif play_again_choice in ['n', 'no']:

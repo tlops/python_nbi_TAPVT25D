@@ -8,67 +8,13 @@ Usage:
 """
 
 import random
-import json
+#import json
 import os
 import sys
 
 # adjustable variables
 PLAYER_BUST_VALUE = 21 # Om spelaren får över 21 förlorar denna direkt
 DEALER_STOP_VALUE = 17 # Dealern slår automatiskt tills den når minst 17 poäng.
-SCORE_FILE = "scores.json" # To store scores
-
-
-class HighScoreManager:
-    # Handles loading and saving the win/loss records for the game.
-    def __init__(self, filename=SCORE_FILE):
-        self.filename = filename
-        self.scores = self._load_scores()
-
-    def _load_scores(self):
-        # Loads scores from the JSON file. Initializes to zero if the file doesn't exist. 
-        # Checks if the file exists before trying to load it.
-        if os.path.exists(self.filename):
-            try:
-                with open(self.filename, 'r') as f:
-                    # Load the data, defaulting to an empty dict if the file is empty.
-                    data = json.load(f)
-                    # Ensure the required keys exist, initializing them to 0 if missing.
-                    return {
-                            'Player_Wins': data.get('Player_Wins', 0),
-                            'Dealer_Wins': data.get('Dealer_Wins', 0)
-                    }
-            except (IOError, json.JSONDecodeError):
-                # Handle cases where file exists but is corrupted or unreadable.
-                print("Warning: Could not read or decode existing scores file. Starting new scores.")
-                return {'Player_Wins': 0, 'Dealer_Wins': 0}
-            
-            else:
-                # Initialize scores if the file does not exist.
-                return {'Player_Wins': 0, 'Dealer_Wins': 0}
-
-    def save_scores(self):
-        # Saves the current scores from rounds back to the JSON file.
-        try:
-            with open(self.filename, 'w') as f:
-                json.dump(self.scores, f, indent=4)
-        except IOError:
-            print("Error: Could not save scores to file.")
-
-    def update_score(self, winner):
-        # Increments the win count for the specified winner (Player or Dealer).
-        if winner == "Player":
-            self.scores['Player_Wins'] += 1
-        elif winner == "Dealer":
-            self.scores['Dealer_Wins'] += 1
-
-    
-    def display_scores(self):
-        # Prints the current high score table.
-        print("\n--- Scoreboard (Winner) ---")
-        print(f"Player: {self.scores['Player_Wins']}")
-        print(f"Spelare: {self.scores['Player_Wins']}")
-        print("---------------------------\n")
-
 
 
 """Class to describe player/dealer actions."""
@@ -110,7 +56,7 @@ class GameLogic:
     def __init__(self):
         self.player = Player()
         self.dealer = Dealer()
-        self.score_manager = HighScoreManager()
+       # self.score_manager = HighScoreManager()
 
     def _display_current_status(self, current_roll):
         # Displays the result of the last roll and the player's total score.
@@ -204,9 +150,12 @@ class GameLogic:
                 print("Dealer is closer to 21. Dealer wins.")
                 winner = "Dealer"
         
+        """
         # Update and display scores if there was a definitive winner
         if winner in ["Player", "Dealer"]:
-            self.score_manager.update_score(winner)
+            #self.score_manager.update_score(winner)
+            pass
+        """
         
 
     
@@ -219,7 +168,7 @@ class GameLogic:
         # Runs the full game loop for one round.
         self.reset_round()
         
-        self.score_manager.display_scores()
+        #self.score_manager.display_scores()
         
         # 1. Player's turn
         player_outcome = self.players_turn()
@@ -251,9 +200,9 @@ class GameLogic:
                 
                 elif play_again_choice in ['n', 'no']:
                     print("Thanks for playing — final standings:")
-                    self.score_manager.display_scores()
+                    #self.score_manager.display_scores()
                     # Save the final scores before exiting
-                    self.score_manager.save_scores()
+                    #self.score_manager.save_scores()
                     break
             
                 
@@ -272,7 +221,7 @@ if __name__ == "__main__":
         print(f"\nInterrupted. Saving highscores and exiting: {e}")
         
         # Ensure scores are saved even on unexpected error before exiting.
-        game.score_manager.save_scores()
+        #game.score_manager.save_scores()
         sys.exit(1)
 
 
