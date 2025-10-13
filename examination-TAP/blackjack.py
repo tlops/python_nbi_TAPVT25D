@@ -4,10 +4,11 @@
 Blackjack-like dice game: player vs dealer.
 Usage:
     python3 blackjack.py
+
 """
 
 import random
-import json
+#import json
 import os
 import sys
 
@@ -15,6 +16,8 @@ import sys
 PLAYER_BUST_VALUE = 21 # Om spelaren får över 21 förlorar denna direkt
 DEALER_STOP_VALUE = 17 # Dealern slår automatiskt tills den når minst 17 poäng.
 
+
+"""Class to describe player/dealer actions."""
 class Player:
     #  Base class for the Player and Dealer in the dice game.
     def __init__(self, name="Player"):
@@ -32,7 +35,7 @@ class Player:
         return self.score > PLAYER_BUST_VALUE
 
     def reset(self):
-        # Resets the player's score for a new round.
+        # Resets the player's/Dealer's score for a new round.
         self.score = 0
 
 
@@ -53,7 +56,7 @@ class GameLogic:
     def __init__(self):
         self.player = Player()
         self.dealer = Dealer()
-        #self.score_manager = HighScoreManager()
+       # self.score_manager = HighScoreManager()
 
     def _display_current_status(self, current_roll):
         # Displays the result of the last roll and the player's total score.
@@ -100,6 +103,7 @@ class GameLogic:
             roll = self.dealer.roll_dice()
             print(f"Dealer rolled {roll} and has total: {self.dealer.score}")
 
+        # if dealer lose
         if self.dealer.is_bust():
             print(f"DEALER BUST! Dealer's total point ({self.dealer.score}) is over {PLAYER_BUST_VALUE}.")
             return "bust"
@@ -124,6 +128,7 @@ class GameLogic:
             print(f"Congratulations! You win (Dealer went over {PLAYER_BUST_VALUE} points).")
             winner = "Player"
 
+        # Scenario 3: Neither busted, compare scores
         else:
             player_score = self.player.score
             dealer_score = self.dealer.score
@@ -144,11 +149,14 @@ class GameLogic:
             else:
                 print("Dealer is closer to 21. Dealer wins.")
                 winner = "Dealer"
+        
         """
         # Update and display scores if there was a definitive winner
         if winner in ["Player", "Dealer"]:
-            self.score_manager.update_score(winner)
+            #self.score_manager.update_score(winner)
+            pass
         """
+        
 
     
     def reset_round(self):
@@ -159,9 +167,9 @@ class GameLogic:
     def start_game(self):
         # Runs the full game loop for one round.
         self.reset_round()
-        """
-        self.score_manager.display_scores()
-        """
+        
+        #self.score_manager.display_scores()
+        
         # 1. Player's turn
         player_outcome = self.players_turn()
 
@@ -184,16 +192,17 @@ class GameLogic:
             self.start_game()
 
             while True:
-                play_again_choice = input("\nPlay again? (y/n): ").strip().lower()
+                play_again_choice = input("\nPlay again? (y)es/(n)o: ").strip().lower()
                 if play_again_choice in ['y', 'yes']:
-                    # somehow my break here is not working
+                    #break # start next round
                     self.start_game()
-                    break # start next round
+                   #pass
                 
                 elif play_again_choice in ['n', 'no']:
                     print("Thanks for playing — final standings:")
+                    #self.score_manager.display_scores()
                     # Save the final scores before exiting
-                    """self.score_manager.save_scores()"""
+                    #self.score_manager.save_scores()
                     break
             
                 
